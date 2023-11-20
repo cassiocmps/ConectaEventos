@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConectaEventos.Models;
 
-public partial class Tema
+public class Tema
 {
     public int Id { get; set; }
 
@@ -14,8 +14,4 @@ public partial class Tema
     public string Decoracao { get; set; } = null!;
 
     public decimal Valor { get; set; }
-
-    public virtual ICollection<Evento> Eventos { get; set; } = new List<Evento>();
-
-    public virtual ICollection<Pacote> Pacotes { get; set; } = new List<Pacote>();
 }

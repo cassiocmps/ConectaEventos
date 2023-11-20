@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConectaEventos.Models;
 
-public partial class Local
+public class Local
 {
     public int Id { get; set; }
 
@@ -12,10 +12,7 @@ public partial class Local
     public string? Descricao { get; set; }
 
     public int EnderecoId { get; set; }
-
     public virtual Endereco Endereco { get; set; } = null!;
 
-    public virtual ICollection<Evento> Eventos { get; set; } = new List<Evento>();
-
-    public virtual ICollection<FotosLocal> FotosLocals { get; set; } = new List<FotosLocal>();
+    public virtual ICollection<LocalFotos> Fotos { get; set; } = new List<LocalFotos>();
 }

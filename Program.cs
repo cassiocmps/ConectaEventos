@@ -1,5 +1,10 @@
 using ConectaEventos.Data;
+using ConectaEventos.Models;
+using ConectaEventos.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using NetCore.AutoRegisterDi;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +19,14 @@ builder.Services.AddDbContext<ConectaEventosContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+// Automatically register services as scoped
+//builder.Services.RegisterAssemblyPublicNonGenericClasses()
+//.Where(c => c.Name.EndsWith("Service"))
+//.AsPublicImplementedInterfaces(ServiceLifetime.Scoped);
+
+builder.Services.AddScoped<FornecedorService>();
+
 
 var app = builder.Build();
 

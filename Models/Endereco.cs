@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConectaEventos.Models;
 
-public partial class Endereco
+public class Endereco
 {
     public int Id { get; set; }
 
@@ -20,8 +20,4 @@ public partial class Endereco
     public string Estado { get; set; } = null!;
 
     public string Cep { get; set; } = null!;
-
-    public virtual ICollection<Local> Locals { get; set; } = new List<Local>();
-
-    public virtual ICollection<Pessoa> Pessoas { get; set; } = new List<Pessoa>();
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ConectaEventos.Models;
 
-public partial class Evento
+public class Evento
 {
     public int Id { get; set; }
 
@@ -15,27 +15,19 @@ public partial class Evento
 
     public decimal ValorTotal { get; set; }
 
-    public int? TemaId { get; set; }
-
-    public int? PacoteId { get; set; }
-
-    public int LocalId { get; set; }
-
     public int ClienteId { get; set; }
-
     public virtual Cliente Cliente { get; set; } = null!;
 
-    public virtual ICollection<EventoHasProduto> EventoHasProdutos { get; set; } = new List<EventoHasProduto>();
-
+    public int LocalId { get; set; }
     public virtual Local Local { get; set; } = null!;
-
+    
+    public int? PacoteId { get; set; }
     public virtual Pacote? Pacote { get; set; }
-
-    public virtual ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
-
+    
+    public int? TemaId { get; set; }
     public virtual Tema? Tema { get; set; }
 
-    public virtual ICollection<Funcionario> Funcionarios { get; set; } = new List<Funcionario>();
+    public virtual ICollection<EventoFuncionario> EventoFuncionarios { get; set; } = new List<EventoFuncionario>();
 
-    public virtual ICollection<Servico> Servicos { get; set; } = new List<Servico>();
+    public virtual ICollection<EventoProduto> EventoProdutos { get; set; } = new List<EventoProduto>();
 }
