@@ -22,7 +22,8 @@ builder.Services.AddDbContext<ConectaEventosContext>(options =>
 
 builder.Services.AddScoped<FornecedorService>();
 builder.Services.AddScoped<LocalService>();
-
+builder.Services.AddScoped<PacoteService>();
+builder.Services.AddScoped<ProdutoService>();
 
 var app = builder.Build();
 
