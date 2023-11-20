@@ -20,27 +20,28 @@ builder.Services.AddDbContext<ConectaEventosContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// Automatically register services as scoped
-//builder.Services.RegisterAssemblyPublicNonGenericClasses()
-//.Where(c => c.Name.EndsWith("Service"))
-//.AsPublicImplementedInterfaces(ServiceLifetime.Scoped);
-
 builder.Services.AddScoped<FornecedorService>();
 
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapWhen(context => context.Request.Path == "/", subApp =>
+{
+    subApp.Use((HttpContext context, Func<Task> next) =>
+    {
+        context.Response.Redirect("/swagger");
+        return Task.CompletedTask;
+    });
+});
 
 app.Run();
