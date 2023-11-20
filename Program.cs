@@ -25,6 +25,7 @@ builder.Services.AddScoped<LocalService>();
 builder.Services.AddScoped<PacoteService>();
 builder.Services.AddScoped<ProdutoService>();
 builder.Services.AddScoped<FuncionarioService>();
+builder.Services.AddScoped<EventoService>();
 
 var app = builder.Build();
 
