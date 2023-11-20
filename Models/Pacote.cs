@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ConectaEventos.Models;
 
@@ -13,11 +14,13 @@ public class Pacote
 
     public decimal Valor { get; set; }
 
-    public int FornecedorId { get; set; }
+    [JsonIgnore]
     public virtual Fornecedor? Fornecedor{ get; set; }
+    public int FornecedorId { get; set; }
 
-    public int? TemaId { get; set; }
+    [JsonIgnore]
     public virtual Tema? Tema { get; set; }
+    public int? TemaId { get; set; }
 
     public virtual ICollection<PacoteProduto> PacoteProdutos { get; set; } = new List<PacoteProduto>();
 }

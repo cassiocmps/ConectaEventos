@@ -23,6 +23,16 @@ public partial class ConectaEventosContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Fornecedor>()
+            .HasMany(f => f.Produtos)
+            .WithOne(p => p.Fornecedor)
+            .HasForeignKey(p => p.FornecedorId);
+
+        modelBuilder.Entity<Fornecedor>()
+            .HasMany(f => f.Pacotes)
+            .WithOne(p => p.Fornecedor)
+            .HasForeignKey(p => p.FornecedorId);
+
         modelBuilder.Entity<PacoteProduto>()
             .HasKey(pp => new { pp.IdPacote, pp.IdProduto });
 
@@ -93,11 +103,6 @@ public partial class ConectaEventosContext : DbContext
             .WithMany()
             .HasForeignKey(f => f.EnderecoId)
             .IsRequired();
-
-        modelBuilder.Entity<Fornecedor>()
-            .HasMany(f => f.Produtos)
-            .WithOne(p => p.Fornecedor)
-            .HasForeignKey(p => p.FornecedorId);
 
         modelBuilder.Entity<Funcionario>()
             .HasOne(f => f.Endereco)

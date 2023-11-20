@@ -15,8 +15,10 @@ public partial class Fornecedor
 
     public string Email { get; set; } = null!;
 
-    public int EnderecoId { get; set; }
     public virtual Endereco Endereco { get; set; } = null!;
+    public int EnderecoId { get; set; }
 
     public virtual ICollection<Produto> Produtos { get; set; } = new List<Produto>();
+    
+    public virtual ICollection<Pacote> Pacotes { get; set; } = new List<Pacote>();
 }

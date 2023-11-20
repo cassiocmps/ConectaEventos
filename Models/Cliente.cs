@@ -17,6 +17,6 @@ public class Cliente
 
     public string Cpf { get; set; } = null!;
 
-    public int EnderecoId { get; set; }
     public virtual Endereco Endereco { get; set; } = null!;
+    public int EnderecoId { get; set; }
 }

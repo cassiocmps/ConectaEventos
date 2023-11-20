@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ConectaEventos.Models;
 
@@ -9,6 +10,7 @@ public class LocalFotos
 
     public string NomeArquivo { get; set; } = null!;
 
-    public int LocalId { get; set; }
+    [JsonIgnore]
     public virtual Local Local { get; set; } = null!;
+    public int LocalId { get; set; }
 }

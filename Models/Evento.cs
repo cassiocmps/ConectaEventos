@@ -15,17 +15,17 @@ public class Evento
 
     public decimal ValorTotal { get; set; }
 
-    public int ClienteId { get; set; }
     public virtual Cliente Cliente { get; set; } = null!;
+    public int ClienteId { get; set; }
 
-    public int LocalId { get; set; }
     public virtual Local Local { get; set; } = null!;
+    public int LocalId { get; set; }
     
-    public int? PacoteId { get; set; }
     public virtual Pacote? Pacote { get; set; }
+    public int? PacoteId { get; set; }
     
-    public int? TemaId { get; set; }
     public virtual Tema? Tema { get; set; }
+    public int? TemaId { get; set; }
 
     public virtual ICollection<EventoFuncionario> EventoFuncionarios { get; set; } = new List<EventoFuncionario>();
 

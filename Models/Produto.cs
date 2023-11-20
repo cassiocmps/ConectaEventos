@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace ConectaEventos.Models;
 
@@ -13,6 +14,7 @@ public class Produto
 
     public decimal Valor { get; set; }
 
-    public int FornecedorId { get; set; }
+    [JsonIgnore]
     public virtual Fornecedor Fornecedor { get; set; } = null!;
+    public int FornecedorId { get; set; }
 }

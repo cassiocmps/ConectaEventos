@@ -25,6 +25,6 @@ public class Funcionario
 
     public decimal Salario { get; set; }
 
-    public int EnderecoId { get; set; }
     public virtual Endereco Endereco { get; set; } = null!;
+    public int EnderecoId { get; set; }
 }
