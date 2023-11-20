@@ -21,6 +21,7 @@ builder.Services.AddDbContext<ConectaEventosContext>(options =>
 });
 
 builder.Services.AddScoped<FornecedorService>();
+builder.Services.AddScoped<LocalService>();
 
 
 var app = builder.Build();
