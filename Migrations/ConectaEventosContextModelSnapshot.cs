@@ -287,7 +287,7 @@ namespace ConectaEventos.Migrations
                     b.ToTable("Locais");
                 });
 
-            modelBuilder.Entity("ConectaEventos.Models.LocalFotos", b =>
+            modelBuilder.Entity("ConectaEventos.Models.LocalFoto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -531,7 +531,7 @@ namespace ConectaEventos.Migrations
                     b.Navigation("Endereco");
                 });
 
-            modelBuilder.Entity("ConectaEventos.Models.LocalFotos", b =>
+            modelBuilder.Entity("ConectaEventos.Models.LocalFoto", b =>
                 {
                     b.HasOne("ConectaEventos.Models.Local", "Local")
                         .WithMany("Fotos")
@@ -545,7 +545,7 @@ namespace ConectaEventos.Migrations
             modelBuilder.Entity("ConectaEventos.Models.Pacote", b =>
                 {
                     b.HasOne("ConectaEventos.Models.Fornecedor", "Fornecedor")
-                        .WithMany()
+                        .WithMany("Pacotes")
                         .HasForeignKey("FornecedorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -598,6 +598,8 @@ namespace ConectaEventos.Migrations
 
             modelBuilder.Entity("ConectaEventos.Models.Fornecedor", b =>
                 {
+                    b.Navigation("Pacotes");
+
                     b.Navigation("Produtos");
                 });
 

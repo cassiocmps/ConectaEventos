@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ConectaEventos.Models;
 
@@ -14,5 +13,20 @@ public class Local
     public int EnderecoId { get; set; }
     public virtual Endereco Endereco { get; set; } = null!;
 
-    public virtual ICollection<LocalFotos> Fotos { get; set; } = new List<LocalFotos>();
+    public virtual ICollection<LocalFoto> Fotos { get; set; } = new List<LocalFoto>();
+
+    public static void ConfigureModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Local>()
+            .HasOne(l => l.Endereco)
+            .WithMany()
+            .HasForeignKey(l => l.EnderecoId)
+            .IsRequired();
+
+        modelBuilder.Entity<Local>()
+            .HasMany(l => l.Fotos)
+            .WithOne(lf => lf.Local)
+            .HasForeignKey(lf => lf.LocalId);
+    }
+
 }

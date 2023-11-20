@@ -17,6 +17,7 @@ namespace ConectaEventos.Services
         {
             return _context.Locais
             .Include(l => l.Endereco)
+            .Include(l => l.Fotos)
             .AsNoTracking()
             .ToList();
         }

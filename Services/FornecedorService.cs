@@ -28,7 +28,7 @@ namespace ConectaEventos.Services
             return _context.Fornecedores
                 .AsNoTracking()
                 .Include(f => f.Produtos)
-                //.Include(f => f.Produtos)
+                .Include(f => f.Pacotes)
                 .Where(f => f.Id == fornecedorId)
                 .FirstOrDefault();
         }

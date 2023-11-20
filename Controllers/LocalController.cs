@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ConectaEventos.Models;
 using ConectaEventos.Services;
 
 namespace ConectaEventos.Controllers

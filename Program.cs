@@ -1,10 +1,6 @@
 using ConectaEventos.Data;
-using ConectaEventos.Models;
 using ConectaEventos.Services;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using NetCore.AutoRegisterDi;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

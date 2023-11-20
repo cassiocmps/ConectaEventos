@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ConectaEventos.Data;
+﻿using ConectaEventos.Data;
 using ConectaEventos.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,10 +19,15 @@ namespace ConectaEventos.Services
             return _context.Eventos
                 .Include(e => e.Cliente)
                 .Include(e => e.Local)
+                    .ThenInclude(l => l.Fotos)
                 .Include(e => e.Pacote)
+                    .ThenInclude(p => p.PacoteProdutos)
+                        .ThenInclude(pp => pp.Produto)
                 .Include(e => e.Tema)
                 .Include(e => e.EventoFuncionarios)
+                    .ThenInclude(ef => ef.Funcionario)
                 .Include(e => e.EventoProdutos)
+                    .ThenInclude(pp => pp.Produto)
                 .AsNoTracking()
                 .ToList();
         }
@@ -35,10 +37,15 @@ namespace ConectaEventos.Services
             return _context.Eventos
                 .Include(e => e.Cliente)
                 .Include(e => e.Local)
+                    .ThenInclude(l => l.Fotos)
                 .Include(e => e.Pacote)
+                    .ThenInclude(p => p.PacoteProdutos)
+                        .ThenInclude(pp => pp.Produto)
                 .Include(e => e.Tema)
                 .Include(e => e.EventoFuncionarios)
+                    .ThenInclude(ef => ef.Funcionario)
                 .Include(e => e.EventoProdutos)
+                    .ThenInclude(pp => pp.Produto)
                 .AsNoTracking()
                 .FirstOrDefault(e => e.Id == eventoId);
         }

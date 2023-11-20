@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ConectaEventos.Models;
 
@@ -17,6 +16,15 @@ public class Cliente
 
     public string Cpf { get; set; } = null!;
 
-    public virtual Endereco Endereco { get; set; } = null!;
     public int EnderecoId { get; set; }
+    public virtual Endereco Endereco { get; set; } = null!;
+
+    public static void ConfigureModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Cliente>()
+            .HasOne(c => c.Endereco)
+            .WithMany()
+            .HasForeignKey(c => c.EnderecoId)
+            .IsRequired();
+    }
 }

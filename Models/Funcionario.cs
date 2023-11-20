@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ConectaEventos.Models;
 
@@ -25,6 +24,15 @@ public class Funcionario
 
     public decimal Salario { get; set; }
 
-    public virtual Endereco Endereco { get; set; } = null!;
     public int EnderecoId { get; set; }
+    public virtual Endereco Endereco { get; set; } = null!;
+
+    public static void ConfigureModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Funcionario>()
+            .HasOne(f => f.Endereco)
+            .WithMany()
+            .HasForeignKey(f => f.EnderecoId)
+            .IsRequired();
+    }
 }

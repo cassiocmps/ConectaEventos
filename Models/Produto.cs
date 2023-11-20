@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
 namespace ConectaEventos.Models;
@@ -14,7 +13,16 @@ public class Produto
 
     public decimal Valor { get; set; }
 
+    public int FornecedorId { get; set; }
     [JsonIgnore]
     public virtual Fornecedor Fornecedor { get; set; } = null!;
-    public int FornecedorId { get; set; }
+
+    public static void ConfigureModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Produto>()
+            .HasOne(p => p.Fornecedor)
+            .WithMany(f => f.Produtos)
+            .HasForeignKey(p => p.FornecedorId)
+            .IsRequired();
+    }
 }

@@ -18,6 +18,8 @@ namespace ConectaEventos.Services
             return _context.Pacotes
                 .Include(p => p.Fornecedor)
                 .Include(p => p.Tema)
+                .Include(p => p.PacoteProdutos)
+                    .ThenInclude(pp => pp.Produto)
                 .AsNoTracking()
                 .ToList();
         }
